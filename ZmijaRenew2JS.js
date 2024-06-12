@@ -159,42 +159,34 @@ var player2Wins = 0;
             // Game over uvjeti za prvog igrača
             if (snakeX < 0 || snakeX >= cols*blockSize || snakeY < 0 || snakeY >= rows*blockSize) {
                 gameOver = true;
+                player2Wins++; //ovo nadodala
+                displayWinner("Player 2"); //ovo nadodala
             }
 
             for (let i = 0; i < snakeBody.length; i++) {
                 if (snakeX == snakeBody[i][0] && snakeY == snakeBody[i][1]) {
                     gameOver = true;
+                    player2Wins++; //ovo nadodala
+                    displayWinner("Player 2"); //ovo nadodala
                 }
             }
 
-            // Game over uvjeti za drugog igrača
+             // Game over uvjeti za drugog igrača
             if (snake2X < 0 || snake2X >= cols*blockSize || snake2Y < 0 || snake2Y >= rows*blockSize) {
                 gameOver = true;
+                player1Wins++; //ovo nadodala
+                displayWinner("Player 1"); //ovo nadodala
             }
 
             for (let i = 0; i < snake2Body.length; i++) {
                 if (snake2X == snake2Body[i][0] && snake2Y == snake2Body[i][1]) {
                     gameOver = true;
+                    player1Wins++; //ovo nadodala
+                    displayWinner("Player 1"); //ovo nadodala
                 }
             }
 
-// Provjera pobjednika
-if (gameOver) {
-    let winner = "";
-    if (score1 > score2) {
-        winner = "Player 1";
-        player1Wins++;
-    } else if (score2 > score1) {
-        winner = "Player 2";
-        player2Wins++;
-    } else {
-        winner = "It's a tie!";
-    }
-    context.fillStyle = "red";
-    context.font = "bold 50px Arial";
-    context.fillText("Winner: " + winner, board.width / 2 - 200, board.height / 4);
-    return;
-}
+
 
 
             // Prikaz score 
@@ -223,6 +215,12 @@ context.fillStyle = "yellow";
 context.fillText("Player 1 Wins: " + player1Wins, board.width - 180, 50);
 
 
+
+function displayWinner(winner) {
+    context.fillStyle = "red";
+    context.font = "bold 50px Arial";
+    context.fillText("Winner: " + winner, board.width / 2 - 200, board.height / 4);
+}
 
         }
 
